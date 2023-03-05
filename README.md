@@ -20,3 +20,6 @@ and least expenasive states they would like to see displayed.
 
 My last page is a conclusion page that answers the research questions I introduced in the 
 first page, tying the whole project together. 
+
+
+I spent about 10 hours on this problem set. 
