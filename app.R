@@ -29,6 +29,7 @@ ui <- fluidPage(
                and board rates charged for full-time students in degree-granting 
                postsecondary institutions, by control and level of institution 
                and state or jurisdiction."), 
+             p("The dataset has ", nrow(data), "rows, and ", ncol(data), "columns."),
              img(alt = "Tuition Graphic", 
                  src = "https://th.bing.com/th/id/R.f44fde31f669039af688c9de699da2da?rik=dCncQPN0qfHJrg&riu=http%3a%2f%2f614now.com%2fwp-content%2fuploads%2f2017%2f05%2ftuition-cash.jpg&ehk=iqnn7hEBQM9bbxFDF0uGiSBxhBPXvWd4bPi9CYwHCiQ%3d&risl=&pid=ImgRaw&r=0"),
              h3("Target Audience"), 
