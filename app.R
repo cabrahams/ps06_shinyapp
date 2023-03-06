@@ -47,40 +47,40 @@ ui <- fluidPage(
                 </ul>"),
              p("The dataset we are using can be accessed", a("here.", 
                                                              href = "https://www.kaggle.com/datasets/kfoster150/avg-cost-of-undergrad-college-by-state")), 
-             ),
+    ),
     
     
     tabPanel("Plot",
-        sidebarLayout(
-          sidebarPanel(
-            fluidRow(
-              column(3, 
-                     radioButtons("colors", 
-                                  "Select color:", 
-                                  choices = c("pink", "skyblue", "lawngreen", "lightyellow", "lavender"))),
-              column(3, 
-                     checkboxGroupInput("states",
-                                        "Select the state(s):",
-                                        choices = unique(data$State))
-              ), 
-              column(6, 
-                     radioButtons("type", 
-                                  "Select the type of school:", 
-                                  choices = unique(data$Type))
-              )
-            ), 
-            
-            textOutput("plot_text")
-          
-          ),
-          
-          mainPanel(
-            plotOutput("plot"), 
-          ),
-        
-        )
+             sidebarLayout(
+               sidebarPanel(
+                 fluidRow(
+                   column(3, 
+                          radioButtons("colors", 
+                                       "Select color:", 
+                                       choices = c("pink", "skyblue", "lawngreen", "lightyellow", "lavender"))),
+                   column(3, 
+                          checkboxGroupInput("states",
+                                             "Select the state(s):",
+                                             choices = unique(data$State))
+                   ), 
+                   column(6, 
+                          radioButtons("type", 
+                                       "Select the type of school:", 
+                                       choices = unique(data$Type))
+                   )
+                 ), 
+                 
+                 textOutput("plot_text")
+                 
+               ),
+               
+               mainPanel(
+                 plotOutput("plot"), 
+               ),
+               
+             )
     ),
-
+    
     tabPanel("Table", 
              sidebarLayout(
                sidebarPanel(
@@ -108,7 +108,7 @@ ui <- fluidPage(
                )
              )
     ),
-
+    
     tabPanel("Conclusion", 
              h1("Overall Takeaways"), 
              h3("Research questions we were answering: "), 
@@ -128,13 +128,20 @@ ui <- fluidPage(
                DC, being one of the most expensive states for tuition, has a much more pronouced increase, while Wyoming, one of the
                cheapest states, has a much smaller increase, but the increase is still clear. This data shows how expensive going to college
                in the United States is, and for our audience of prospective college students, seeing which states cost what can make or break 
-               decisions about what school they end up at.")
-             )
-            
-            
-
-)
-
+               decisions about what school they end up at."),
+             p("Our dataset was very thorough, but was not overly complicated. There were only 5 columns/variables affecting the data, and 
+               the main bulk of the rows came from the variation over time for each state for each type of school. Because the data was all numbers, 
+               it was very unbiased, as it was just representing how the different expenses have changed over time. We feel as though the data will 
+               do more good than harming certain groups, as it helps figure out what states best fit certain budgets or price ranges."),
+             p("To advance the project further, it would be interesting to compare this data with acceptance data with the same categories - see
+               what states' schools or what type of schools overall are easier to get into, to again help prospective college students figure out
+               what school in what state would be the best fit for them.")
+    )
+    
+    
+    
+  )
+  
 )
 
 
@@ -144,7 +151,7 @@ server <- function(input, output) {
   year_data <- reactive({
     data %>% 
       filter(Year == input$table_years)
-  
+    
   })
   
   output$most_expensive_states <- renderDataTable({
