@@ -122,8 +122,16 @@ ui <- fluidPage(
                Idaho, and Utah"), "are consistently the top 3 cheapest states for college tuition."), 
              p("2. Yes, private universities", em("do"), "cost more than public univerisites consistently from 2013 to 2021."),
              p("3. Yes, college tuition in the US", em("has"), "gotten more expensive from 2013 to 2021, with the most expensive
-               state (DC) gaining almost $8000 in total value during that time period.")
+               state (DC) gaining almost $8000 in total value during that time period."),
+             plotOutput("conclusion"), 
+             p("Comparing both DC's and Wyoming's tuition in 2013 and 2021, we can see a clear increase in overall tuition costs. 
+               DC, being one of the most expensive states for tuition, has a much more pronouced increase, while Wyoming, one of the
+               cheapest states, has a much smaller increase, but the increase is still clear. This data shows how expensive going to college
+               in the United States is, and for our audience of prospective college students, seeing which states cost what can make or break 
+               decisions about what school they end up at.")
              )
+            
+            
 
 )
 
@@ -209,14 +217,16 @@ server <- function(input, output) {
       scale_fill_discrete(name = "State")
   })
   
-  output$plot_text <- renderText({
-    plot_data <- data %>%
-      filter(State %in% input$states, Type == input$type)
+  output$conclusion <- renderPlot({
+    dc_wy_df <- subset(data, State %in% c("District of Columbia", "Wyoming") & Year %in% c("2013", "2021"))
     
-    paste("Selected subset contains", nrow(plot_data), "observations.")
+    # create the bar plot
+    ggplot(dc_wy_df, aes(x = Year, y = Value, fill = State)) +
+      geom_bar(stat = "identity", position = "dodge") +
+      labs(title = "College Tuition in DC and Wyoming in 2013 vs 2021",
+           x = "Year", y = "College Tuition", fill = "State") +
+      scale_fill_manual(values = c("steelblue", "orange"))
   })
-  
-
   
 }
 
