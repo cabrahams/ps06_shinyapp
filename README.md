@@ -1,6 +1,6 @@
 # ps06_shinyapp
 
-url for published app:  https://cabrahams.shinyapps.io/ps6_try2/
+url for published app: https://cabrahams.shinyapps.io/ps6_final/
 
 In this app, I was analyzing a dataset called Avg Cost of Undergrad College by State. 
 
